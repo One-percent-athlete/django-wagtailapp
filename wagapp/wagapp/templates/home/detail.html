@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Detail</title>
 </head>
 <body>
-    {% for post in posts %}
-        <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
-    {% endfor %}
+    <h1>{{ post.title }}</h1>
+    <h3>{{ post.created }} - {{ post.author }}</h3>
+    <p>{{ post.body }}</p>
 </body>
 </html>
