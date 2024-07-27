@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 
+{% load wagtailimages_tags %}
+
 {% load static %}
 
-{% block title %}{% endblock %}
+{% block title %}Post{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -51,8 +53,9 @@
 						<div class="post clearfix">
 						
 							<!-- POST IMAGE -->
+							{% image post.image max-1000x500 as header_image %}
 							<div id="post-header">
-								<img alt="" src="{% static 'img/pretty-woman.jpg' %}" />
+								<img alt="" src="{{ header_image.url }}" />
 							</div>
 							
 							<!-- POST TITLE -->
@@ -69,15 +72,8 @@
 							
 							<!-- TEXT POST -->
 							<div class="post-body">
-								<p>{{ post.body }}</p>
-								
-								<div class="alignleft"><img src="{% static 'img/burger.jpg' %}" alt=""></div>
-								<p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.
-								Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-								
-								<div class="alignright"><img src="{% static 'img/sushi.jpg' %}" alt=""></div>
-								<p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.
-								Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+								<p>{{ post.intro }}</p>
+							{% include 'components/streamfield.html' %}
 							</div>
 							
 							<!-- RELATED POST -->

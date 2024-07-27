@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load wagtailimages_tags %}
+
 {% load static %}
 
 {% block title %}Home{% endblock %}
@@ -87,7 +89,8 @@
 											<li>
 												<figure>
 													<div class="topListimages">
-														<a href="{{ post.get_absolute_url }}"><img alt="" src="{% static 'img/taxi.jpg' %}" /></a>
+                                                        {% image post.image max-700x500 as header_image %}
+														<a href="{{ post.get_absolute_url }}"><img alt="" src="{{ header_image.url }}" /></a>
 														<a href="{{ post.get_absolute_url }}"><div class="overlay"></div></a>
 													</div>
 													<figcaption>
@@ -97,7 +100,7 @@
 																<div class="cap-date">{{ post.created }}</div>
 																<div class="cap-comment"><i class="fa fa-comment"></i> 7</div>
 															</div>
-															<p>{{ post.body }}</p>
+															<p>{{ post.intro|truncatewords:30|linebreaks }}</p>
 														</div>
 													</figcaption>
 												</figure>
