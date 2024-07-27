@@ -1,13 +1,109 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail</title>
-</head>
-<body>
-    <h1>{{ post.title }}</h1>
-    <h3>{{ post.created }} - {{ post.author }}</h3>
-    <p>{{ post.body }}</p>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="row">	
+	
+		<div class="tabs-menu clearfix">
+			<div class="left-area">
+				Left Sidebar
+			</div>
+			<div class="left-area-2">
+				Left Sidebar
+			</div>
+			<div class="center-area">
+				Featured News
+			</div>
+			<div class="right-area">
+				Right Sidebar
+			</div>
+			<div class="right-area-2">
+				Right Sidebar
+			</div>
+		</div>
+	
+		<div id="outer-wrapper" class="clearfix">
+		
+			<div class="secondary-content clearfix">
+			
+				<!-- LEFT SIDEBAR START -->
+				<div class="left-sidebar">
+					<div class="theiaStickySidebar">
+						<div class="grid-sidebar">
+							
+							<!-- CATEGORY 1 START -->
+							{% include 'components/home/category.html' %}
+							<!-- CATEGORY 1 END -->
+
+							
+						</div>
+					</div>					
+				</div><!-- LEFT SIDEBAR END -->
+				
+				<div id="main-wrapper" class="clearfix">
+					<div class="theiaStickySidebar">
+					
+						<!-- SINGLE POST START -->
+						<div class="post clearfix">
+						
+							<!-- POST IMAGE -->
+							<div id="post-header">
+								<img alt="" src="{% static 'img/pretty-woman.jpg' %}" />
+							</div>
+							
+							<!-- POST TITLE -->
+							<h2 class="post-title">
+								{{ post.title }}
+							</h2>
+							
+							<!-- POST META -->
+							<div class="meta post-meta">
+								<span><i class="fa fa-clock-o"></i> {{ post.created }}</span> - 
+								<span><i class="fa fa-user"></i> {{ poost.author }}</span>	- 
+								<span><i class="fa fa-comments"></i> 5 Comments</span>
+							</div>
+							
+							<!-- TEXT POST -->
+							<div class="post-body">
+								<p>{{ post.body }}</p>
+								
+								<div class="alignleft"><img src="{% static 'img/burger.jpg' %}" alt=""></div>
+								<p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.
+								Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+								
+								<div class="alignright"><img src="{% static 'img/sushi.jpg' %}" alt=""></div>
+								<p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.
+								Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+							</div>
+							
+							<!-- RELATED POST -->
+							{% include 'components/home/related.html' %}
+							
+							<div id="comments" class="clearfix">
+								<!-- COMMENTS -->
+								{% include 'components/home/comments.html' %}
+								
+								<!-- COMMENT FORM -->
+								{% include 'components/home/comments_form.html' %}
+							</div>
+							
+							
+						</div><!-- SINGLE POST END -->
+						
+					</div>
+				</div>
+				
+			</div>
+			
+			<!-- RIGHT SIDEBAR START -->
+			{% include 'components/home/right_sidebar.html' %}
+			<!-- RIGHT SIDEBAR END -->
+			
+		</div>
+	</div>
+</div>
+{% endblock %}

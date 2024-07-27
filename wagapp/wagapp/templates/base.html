@@ -1,46 +1,92 @@
-{% load static wagtailcore_tags wagtailuserbar %}
+{% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>
-            {% block title %}
-            {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
-            {% endblock %}
-            {% block title_suffix %}
-            {% wagtail_site as current_site %}
-            {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
-            {% endblock %}
-        </title>
-        {% if page.search_description %}
-        <meta name="description" content="{{ page.search_description }}" />
-        {% endif %}
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+<html dir="ltr" lang="en-US" class="no-js"> 
+<head>
+  <!-- Basic -->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>{% block title %}{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no"/>
+  
+  <link rel="icon" type="image/png" href="{% static 'img/favicon.ico' %}">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" type="text/css" href="{%  static 'font-awesome/css/font-awesome.min.css' %}" media="screen">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" media="screen">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/media-queries.css' %}" media="screen">
+  
+  <!--[if lt IE 9]>
+      <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js' %}"></script>
+  <![endif]-->
+</head>
+<body>
 
-        {# Force all links in the live preview panel to be opened in a new tab #}
-        {% if request.in_preview_panel %}
-        <base target="_blank">
-        {% endif %}
+	<!--[if lt IE 7]>
+		<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+	<div class="navbar-fixed-top"></div>
+	<div class="loader-mask">
+		<div class="load-container">
+			<div class="cube purple"></div>
+			<div class="cube orange"></div>
+		</div>
+	</div>
+	
+	<!-- HEADER START -->
+    {% include 'components/header.html' %}
+    <!-- HEADER END -->
+	
+    {% block content %}
+    {% endblock %}
 
-        {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/wagapp.css' %}">
+	<!-- FOOTER START -->
+    {% include 'components/footer.html' %}
+    <!-- FOOTER END -->
 
-        {% block extra_css %}
-        {# Override this in templates to add extra stylesheets #}
-        {% endblock %}
-    </head>
+    
+    <!-- CREDITS START -->
+    <div class="picfooter clearfix">
+        <div class="container">
+            <div class="row">
+                
+                <!-- COPYRIGHT START -->
+                <div class="credits">
+                    Copyright &#169; 2016 <a class='sitename' href='#' title='NewsPepper'>NewsPepper</a>
+                </div><!-- COPYRIGHT END -->
+                
+                <!-- FOOTER SOCIALS START -->
+                <div class="social-table">
+                    <div class='fa-icon-wrap'>
+                        <a class='facebook' href='#'><i class='fa fa-facebook'></i></a>
+                        <a class='google+' href='#'><i class='fa fa-google-plus'></i></a>
+                        <a class='twitter' href='#'><i class='fa fa-twitter'></i></a>
+                        <a class='linkedin' href='#'><i class='fa fa-linkedin'></i></a>
+                        <a class='pinterest' href='#'><i class='fa fa-pinterest-p'></i></a>
+                        <a class='youtube' href='#'><i class='fa fa-youtube'></i></a>
+                        <a class='soundcloud' href='#'><i class='fa fa-soundcloud'></i></a>
+                    </div>
+                </div><!-- FOOTER SOCIALS END -->
+                
+            </div>
+        </div>
+    </div>
+    <!-- CREDITS END -->	
 
-    <body class="{% block body_class %}{% endblock %}">
-        {% wagtailuserbar %}
 
-        {% block content %}{% endblock %}
+<a href="#" id="BackToTop"><i class="fa fa-angle-up"></i></a>
+	
 
-        {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/wagapp.js' %}"></script>
-
-        {% block extra_js %}
-        {# Override this in templates to add extra javascript #}
-        {% endblock %}
-    </body>
+	<!-- JAVASCRIPTS -->
+	<script type="text/javascript" src="{% static 'js/plugins/jquery-1.12.3.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/plugins/theia-sticky-sidebar.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/plugins/blockUI.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/plugins/featured-slider.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/plugins/jCarouselLite.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/functions/featuredslider.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/functions/scripts.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/functions.js' %}"></script>
+	
+</body>
 </html>
