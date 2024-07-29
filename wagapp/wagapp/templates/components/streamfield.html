@@ -1,79 +1,51 @@
 {% load wagtailimages_tags %}
 
+{% with blocks=post.body %}
+
+{% for block in blocks %}
+
+{% if block.block_type == 'photo' %}
+
     <!-- POST IMAGE -->
     <div id="post-header">
-        <img alt="" src="img/breakfast.jpg" />
+    {% image block.value max-1000x500 %}
     </div>
-    
-    <!-- TEXT POST -->
-    <div class="post-body">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-        Et harum quidem rerum facilis est et expedita distinctio.</p>
-        
-        <div class="alignleft"><img src="img/sushi.jpg" alt=""></div>
-        <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-        
-        <div class="alignright"><img src="img/burger.jpg" alt=""></div>
-        <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-    </div>
-    
-    <div class="line_1" style="margin:16px 0px 37px;"></div>
-    
-    <!-- TYPOGRAPHY -->
-    <h1 class="h1">H1 Heading</h1>
-    <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.
-    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+
+{% elif block.block_type == 'paragraph' %}
+    <p>{{ block.value }}</p>
+    <div class="line" style="margin:16px 0px 37px;"></div>
+
+{% elif block.block_type == 'Image_with_text' %}
+
+    {% include 'components/blocks/image_text.html' %}
+    <div class="line" style="margin:16px 0px 37px;"></div>
+{% elif block.block_type == 'h1' %}
+    <h1 class="h1">{{ block.value }}</h1>
+    <div class="line" style="margin:-3px 0px 18px;"></div>
+{% elif block.block_type == 'h2' %}
+    <h2 class="h2">{{ block.value }}</h2>
+    <div class="line" style="margin:-3px 0px 18px;"></div>
+{% elif block.block_type == 'h3' %}
+    <h3 class="h3">{{ block.value }}</h3>
+    <div class="line" style="margin:-3px 0px 18px;"></div>
+{% elif block.block_type == 'h4' %}
+    <h4 class="h4">{{ block.value }}</h4>
+    <div class="line" style="margin:-3px 0px 18px;"></div>
+{% elif block.block_type == 'h5' %}
+    <h5 class="h5">{{ block.value }}</h5>
     <div class="line" style="margin:-3px 0px 18px;"></div>
     
-    <h2 class="h2">H2 Heading</h2>
-    <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.
-    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-    <div class="line" style="margin:-3px 0px 12px;"></div>
-    
-    <h3 class="h3">H3 Heading</h3>
-    <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.
-    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-    <div class="line" style="margin:-3px 0px 10px;"></div>
-    
-    <h4 class="h4">H4 Heading</h4>
-    <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.
-    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-    <div class="line" style="margin:-3px 0px 10px;"></div>
-    
-    <h5 class="h5">H5 Heading</h5>
-    <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.
-    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-    <div class="line_1" style="margin:30px 0px 30px;"></div>
-    
-    <h2 class="h2">Blockquote & Pre</h2>
-    <blockquote>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.
-    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</blockquote>
-    
-    <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.
-    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-    
-    <pre>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</pre>
-    
-    <div class="line" style="margin:30px 0px 25px;"></div>
-    
-    <h3 class="h3">Unordered list</h3>
-    <ul class="list">
-        <li>Sed ut perspiciatis unde omnis.</li>
-        <li>Voluptatem accusantium doloremque.</li>
-        <li>Laudanti totam rem aperiam.</li>
-        <li>Quasi architecto beatae vitae.</li>
-        <li>Dicta sunt explicabo emo enim.</li>
-    </ul>
-    <div class="line" style="margin:13px 0px 19px;"></div>
-    
-    <h3 class="h3">Ordered list</h3>
-    <ol class="list-1">
-        <li>Sed ut perspiciatis unde omnis.</li>
-        <li>Voluptatem accusantium doloremque.</li>
-        <li>Laudanti totam rem aperiam.</li>
-        <li>Quasi architecto beatae vitae.</li>
-        <li>Dicta sunt explicabo emo enim.</li>
-    </ol>
+{% elif block.block_type == 'list' %}
+    {% include 'components/blocks/list.html' %}
+
+{% elif block.block_type == 'qupte' %}
+{% include 'components/blocks/list.html' %}
+    <h2 class="h2">{{ block.value.quoted_by }}</h2>
+    <blockquote>{{ block.value.text }}</blockquote>
+
+{% elif block.block_type == 'link' %}
+    <pre>{{ block.value }}</pre>
+{% endif %}  
+
+{% endfor %}    
+{% endwith %}

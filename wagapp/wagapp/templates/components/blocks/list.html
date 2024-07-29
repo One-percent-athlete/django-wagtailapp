@@ -1,0 +1,20 @@
+{% load wagtailimages_tags %}
+
+<div class="line" style="margin:30px 0px 25px;"></div>
+    
+{% if block.value.ordered %}
+
+<h3 class="h3">Ordered list</h3>
+<ol class="list-1">
+    <li>{{ block.value.text }}</li>
+</ol>
+
+
+{% else %}
+<h3 class="h3">Unordered list</h3>
+<ul class="list">
+    <li>{{ block.value.text }}</li>
+</ul>
+
+{% endif %}
+<div class="line" style="margin:13px 0px 19px;"></div>

@@ -3,7 +3,7 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.fields import StreamField
 
 class ImageText(blocks.StructBlock):
-    reverse = blocks.BooleanBlock()
+    reverse = blocks.BooleanBlock(required=False)
     image = ImageChooserBlock()
 
 class Quote(blocks.StructBlock):
@@ -11,5 +11,5 @@ class Quote(blocks.StructBlock):
     text = blocks.CharBlock()
 
 class List(blocks.StructBlock):
-    ordered = blocks.BooleanBlock()
+    ordered = blocks.BooleanBlock(required=False)
     text = blocks.CharBlock()

@@ -1,0 +1,10 @@
+{% load wagtailimages_tags %}
+
+<div class="{% if block.value.reverse %} alignleft {% else %} alignright {% endif %} ">
+    {% image block.value.image max-206x137 as img %}
+    <img src="{{ img.url }}" alt="">
+</div>
+<p>{{ block.value.text }}</p>
+
+<div class="line" style="margin:30px 0px 25px;"></div>    
+
