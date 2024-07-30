@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render,redirect, get_object_or_404
 from django.core.paginator import Paginator
 
-from .models import Post
+from .models import Post, Review
+from .forms import ReviewForm
 
 def post_list(request):
     posts = Post.objects.all()
@@ -16,6 +17,19 @@ def post_list(request):
 
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug,)
+
+    if request.method == 'POST':
+        review_form = ReviewForm(request.POST)
+        if review_form.is_valid():
+            data = review_form.cleaned_data
+            Review.objects.create(
+                post=post,
+                author=data['author'],
+                text=data['text'],
+                rating=data['rating']
+            )
+        return redirect('home:post_detail', slug=post.slug)
+    
     context = {"post": post,}
     return render(request, 'home/detail.html', context)
 
