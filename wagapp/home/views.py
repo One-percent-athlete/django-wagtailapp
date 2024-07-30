@@ -29,6 +29,8 @@ def post_detail(request, slug):
                 rating=data['rating']
             )
         return redirect('home:post_detail', slug=post.slug)
+    else:
+        review_form = ReviewForm
     
     context = {"post": post,}
     return render(request, 'home/detail.html', context)
