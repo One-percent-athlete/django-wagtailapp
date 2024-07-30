@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 from wagtail.models import Page
 from wagtail.admin.panels import FieldPanel
@@ -44,3 +45,13 @@ class Post(models.Model):
     
     def get_absolute_url(self):
         return reverse('home:post_detail', args=[str(self.slug)])
+
+class Review(models.Model):
+    post = models.ForeignKey(Post, related_name='reviews', on_delete=models.CASCADE)
+    author = models.CharField(max_length=50)
+    rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    text = models.TextField(blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ('-created',)
