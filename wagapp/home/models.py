@@ -45,6 +45,16 @@ class Post(models.Model):
     
     def get_absolute_url(self):
         return reverse('home:post_detail', args=[str(self.slug)])
+    
+    def get_average_rating(self):
+        average = 0
+        if self.reviews.count() > 0:
+            total = sum([review.rating for review in self.reviews.all()])
+            average = total/self.reviews.count()
+        return round(average, 1)
+    
+    def get_review_count(self):
+        return self.reviews.count()
 
 class Review(models.Model):
     post = models.ForeignKey(Post, related_name='reviews', on_delete=models.CASCADE)
@@ -55,3 +65,7 @@ class Review(models.Model):
     
     class Meta:
         ordering = ('-created',)
+
+    def get_star_count(self):
+        return range(self.rating)
+    

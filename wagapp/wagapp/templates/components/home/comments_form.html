@@ -4,39 +4,41 @@
     <h3><i class="fa fa-pencil"></i> Leave a Replay</h3>
     
     <div class="comments_form">
-        <form>
+        <form method="post" class="ReviewForm"> 
+            {% csrf_token %}
             <div id="full-stars" class="d-inline text-center">
                 <div class="rating-group">
+                    <h3 class="rating__label">Rate {{ post.title }}</h3>
+
                     <div class="stars-container">
-                        <input class="rating__input" type="radio" checked ratrequired>
-                        <label class="rating__label">
+                        <input class="rating__input" name="rating" id="id_rating_5" value="5" type="radio" checked ratrequired>
+                        <label class="rating__label" for="id_rating_5">
                             <i class="rating__icon rating__icon--star fa fa-star"></i>
                         </label>
-                        <input class="rating__input" type="radio" required>
-                        <label class="rating__label">
+                        <input class="rating__input" name="rating" id="id_rating_4" value="4" type="radio" required>
+                        <label class="rating__label" for="id_rating_4">
                             <i class="rating__icon rating__icon--star fa fa-star"></i>
                         </label>
-                        <input class="rating__input" type="radio" required>
-                        <label class="rating__label">
+                        <input class="rating__input" name="rating" id="id_rating_3" value="3" type="radio" required>
+                        <label class="rating__label" for="id_rating_3">
                             <i class="rating__icon rating__icon--star fa fa-star"></i>
                         </label>
-                        <input class="rating__input" type="radio" required>
-                        <label class="rating__label">
+                        <input class="rating__input" name="rating" id="id_rating_2" value="2" type="radio" required>
+                        <label class="rating__label" for="id_rating_2">
                             <i class="rating__icon rating__icon--star fa fa-star"></i>
                         </label>
-                        <input class="rating__input" type="radio" required>
-                        <label class="rating__label">
+                        <input class="rating__input" name="rating" id="id_rating_1" value="1" type="radio" required>
+                        <label class="rating__label" for="id_rating_1">
                             <i class="rating__icon rating__icon--star fa fa-star"></i>
                         </label>
                     </div>
                 </div>
             </div>
             <div class="inp_blocks">
-                <input id="c_name" type="text" placeholder="Your Name *" required/>
-                <input id="c-mail" type="text" placeholder="Your Email *" required/>
+                <input id="author" name="author" type="text" placeholder="Your Name *" required/>
             </div>
-            <textarea cols="30" rows="10" placeholder="Message"></textarea>
-            <input type="submit" value="Send Message" />
+            <textarea name="text" id="text" cols="30" rows="10" placeholder="Comment"></textarea>
+            <input type="submit" value="Send Comment" />
         </form>
     </div>
 </div> 

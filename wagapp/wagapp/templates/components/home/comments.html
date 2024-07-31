@@ -1,87 +1,30 @@
 {% load static %}
 
 <div id="comments" class="clearfix">
-    <h2><i class='fa fa-comments-o'></i> 23 Comments</h2>
+    <h2><i class='fa fa-comments-o'></i>{{ post.get_review_count }} Comments</h2>
+    <hr>
+    <h2>Average Rating {{ post.get_average_rating }}/5.0 </h2>
     <div class="title-border"></div>
     
     <ol class="comments_list">
+        {% for review in post.reviews.all %}
         <li class="comment">
             <article-reply>
-                <div class="comment_avatar">
-                    <img src="{% static 'img/mercedes.jpg' %}" alt="Avatar">
-                </div>
                 <div class="comment_content">
                     <div class="meta">
-                        <span class="comment_author"><a href="#">John Doe</a></span>
-                        <span class="comment_date">August 11, 2014 at 5:45 AM</span>
+                        <span class="comment_author"><a href="#">{{ review.author }}</a></span>
+                        <span class="comment_date">{{ review.created }}</span>
+                        <div class="comment_rating">
+                            {% for _ in review.get_star_count %}
+                            <i class="rating__icon rating__icon--star fa fa-star"></i>
+                            {% endfor %}
+                        </div>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae mi nulla. Mauris ac libero quis leo aliquet aliquam. Proin porttitor in magna id tincidunt. Praesent in erat vehicula, tempor sapien a, tincidunt elit. </p>
-                    <a href="#" class="comment_reply">Reply</a>
-                </div>
-            </article-reply>
-            <ul class="children">
-                <li class="comment">
-                    <article-reply>
-                        <div class="comment_avatar">
-                            <img src="{% static 'img/girl-8.jpg' %}" alt="Avatar">
-                        </div>
-                        <div class="comment_content">
-                            <div class="meta">
-                                <span class="comment_author"><a href="#">John Doe</a></span>
-                                <span class="comment_date">September 21, 2014 at 5:32 PM</span>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae mi nulla. Mauris ac libero quis leo aliquet aliquam. Proin porttitor in magna id tincidunt. Praesent in erat vehicula, tempor sapien a, tincidunt elit. Maecenas faucibus eleifend dui quis venenatis. Etiam at metus ut risus consectetur vehicula.</p>
-                            <a href="#" class="comment_reply">Reply</a>
-                        </div>
-                    </article-reply>
-                </li>
-                <li class="comment">
-                    <article-reply>
-                        <div class="comment_avatar">
-                            <img src="{% static 'img/andrea-velasco.jpg' %}" alt="Avatar">
-                        </div>
-                        <div class="comment_content">
-                            <div class="meta">
-                                <span class="comment_author"><a href="#">John Doe</a></span>
-                                <span class="comment_date">September 22, 2014 at 7:31 AM</span>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae mi nulla. Mauris ac libero quis leo aliquet aliquam. Proin porttitor in magna id tincidunt. Praesent in erat vehicula, tempor sapien a, tincidunt elit. </p>
-                            <a href="#" class="comment_reply">Reply</a>
-                        </div>
-                    </article-reply>
-                </li>
-            </ul>
-        </li>
-        <li class="comment">
-            <article-reply>
-                <div class="comment_avatar">
-                    <img src="{% static 'img/avatar.png' %}" alt="Avatar">
-                </div>
-                <div class="comment_content">
-                    <div class="meta">
-                        <span class="comment_author"><a href="#">John Doe</a></span>
-                        <span class="comment_date">May 20, 2015 at 8:59 PM</span>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae mi nulla. Mauris ac libero quis leo aliquet aliquam. Proin porttitor in magna id tincidunt. Praesent in erat vehicula, tempor sapien a, tincidunt elit. Maecenas faucibus eleifend dui quis venenatis. Etiam at metus ut risus consectetur vehicula.</p>
-                    <a href="#" class="comment_reply">Reply</a>
+                    <p>{{ review.text }}</p>
                 </div>
             </article-reply>
         </li>
-        <li class="comment">
-            <article-reply>
-                <div class="comment_avatar">
-                    <img src="{% static 'img/music-8.jpg' %}" alt="Avatar">
-                </div>
-                <div class="comment_content">
-                    <div class="meta">
-                        <span class="comment_author"><a href="#">John Doe</a></span>
-                        <span class="comment_date">August 20, 2015 at 8:00 AM</span>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae mi nulla. Mauris ac libero quis leo aliquet aliquam. Proin porttitor in magna id tincidunt. Praesent in erat vehicula, tempor sapien a, tincidunt elit.</p>
-                    <a href="#" class="comment_reply">Reply</a>
-                </div>
-            </article-reply>
-        </li>
+        {% endfor %}
     </ol>
 
 </div> 

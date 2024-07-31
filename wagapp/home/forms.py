@@ -12,6 +12,7 @@ REVIEW_CHOICES = [
 
 class ReviewForm(forms.ModelForm):
     class Meta:
+        model = Review
         fields = ['author', 'text', 'rating']
         widgets = {
             forms.RadioSelect(

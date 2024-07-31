@@ -67,7 +67,8 @@
 							<div class="meta post-meta">
 								<span><i class="fa fa-clock-o"></i> {{ post.created }}</span> - 
 								<span><i class="fa fa-user"></i> {{ poost.author }}</span>	- 
-								<span><i class="fa fa-comments"></i> 5 Comments</span>
+								<span><i class="fa fa-comments"></i>{{ post.get_review_count }} Comments</span> - 
+								<span>Average Rating {{ post.get_average_rating }}/5.0</span>
 							</div>
 							
 							<!-- TEXT POST -->

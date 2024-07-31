@@ -32,6 +32,6 @@ def post_detail(request, slug):
     else:
         review_form = ReviewForm
     
-    context = {"post": post,}
+    context = {'post': post,'review_form':review_form}
     return render(request, 'home/detail.html', context)
 
