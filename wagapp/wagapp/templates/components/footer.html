@@ -44,18 +44,9 @@
                             <h2 class="title">Labels</h2>
                             <div class="list-label-widget-content">
                                 <ul>
-                                    <li><a href="#">Carousel</a></li>
-                                    <li><a href="#">Entertainment</a></li>
-                                    <li><a href="#">Fashion</a></li>
-                                    <li><a href="#">Food</a></li>
-                                    <li><a href="#">Holidays</a></li>
-                                    <li><a href="#">Hotels</a></li>
-                                    <li><a href="#">Music</a></li>
-                                    <li><a href="#">people</a></li>
-                                    <li><a href="#">Sport</a></li>
-                                    <li><a href="#">Technology</a></li>
-                                    <li><a href="#">Training</a></li>
-                                    <li><a href="#">Cars</a></li>
+                                    {% for tag in tags %}
+                                    <li><a href="#">{{ tag.name }}</a></li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                         </div>

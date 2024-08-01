@@ -3,17 +3,32 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.core.validators import MaxValueValidator, MinValueValidator
+from taggit.managers import TaggableManager
 
 from wagtail.models import Page
 from wagtail.admin.panels import FieldPanel
 from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.fields import StreamField
+from wagtail.snippets.models import register_snippet
 
 from .blocks import ImageText, Quote, List
 
 class HomePage(Page):
     pass
+
+@register_snippet
+class Categories(models.Model):
+    name = models.CharField(max_length=50)
+    slug = models.SlugField(max_length=80)
+
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
+
+    def __str__(self):
+        return self.name
+    
 
 class Post(models.Model):
     title = models.CharField(max_length=50)
@@ -36,6 +51,8 @@ class Post(models.Model):
     updated = models.DateTimeField(auto_now=True)
     published = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
+    tags = TaggableManager(blank=True)
+    category = models.ForeignKey(Categories, blank=True, null=True, on_delete=models.CASCADE, related_name='category')
 
     class Meta: 
         ordering = ['-published']
