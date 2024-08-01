@@ -23,6 +23,13 @@
                                 {% endfor %}
                             </ul>
                         </li>
+                        <li class="down home"><a href="#">Categories <i class="fa fa-caret-down"></i></a>
+                            <ul class="menus">
+                                {% for category in categories %}
+                                <li><a href="{% url 'home:category_filter' category.slug %}">{{ category.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
                         <li><a href="contact.html">Contact</a></li>
                         <li><a href="#">Mega Menu <i class="fa fa-caret-down"></i></a>
                         

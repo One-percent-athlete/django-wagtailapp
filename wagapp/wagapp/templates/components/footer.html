@@ -54,21 +54,9 @@
                         <div class="widget">
                             <h2 class="title">Categories</h2>
                             <div class="cloud-label-widget-content">
-                                <span class="label-size label-size-3"><a href="#">Carousel</a></span>
-                                <span class="label-size label-size-3"><a href="#">Cars</a></span>
-                                <span class="label-size label-size-5"><a href="#">City</a></span>
-                                <span class="label-size label-size-1"><a href="#">Classic</a></span>
-                                <span class="label-size label-size-5"><a href="#">Entertainment</a></span>
-                                <span class="label-size label-size-4"><a href="#">Fashion</a></span>
-                                <span class="label-size label-size-5"><a href="#">Food</a></span>
-                                <span class="label-size label-size-5"><a href="#">Holidays</a></span>
-                                <span class="label-size label-size-4"><a href="#">Hotels</a></span>
-                                <span class="label-size label-size-3"><a href="#">Music</a></span>
-                                <span class="label-size label-size-5"><a href="#">people</a></span>
-                                <span class="label-size label-size-3"><a href="#">Sport</a></span>
-                                <span class="label-size label-size-4"><a href="#">Technology</a></span>
-                                <span class="label-size label-size-5"><a href="#">Training</a></span>
-                                <span class="label-size label-size-1"><a href="#">Video</a></span>
+                            {% for category in categories %}
+                                <span class="label-size label-size-3"><a href="{% url 'home:category_filter' category.slug %}">{{ category.name }}</a></span>
+                            {% endfor %}
                             </div>
                         </div>
                     </div><!-- THIRD COLUMN START -->
