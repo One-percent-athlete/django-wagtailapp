@@ -45,7 +45,7 @@
                             <div class="list-label-widget-content">
                                 <ul>
                                     {% for tag in tags %}
-                                    <li><a href="#">{{ tag.name }}</a></li>
+                                    <li><a href="{% url 'home:tag_filter' tag.slug %}">{{ tag.name }}</a></li>
                                     {% endfor %}
                                 </ul>
                             </div>

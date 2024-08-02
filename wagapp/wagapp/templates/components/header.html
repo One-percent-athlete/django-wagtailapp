@@ -5,7 +5,7 @@
         <div class="row">
         
             <div class="header">
-                <div class="logo"><a href=""><img alt=" " src="{% static 'img/logo.png' %}" /></a></div>
+                <div class="logo"><a href="/"><img alt="" src="{% static 'img/logo.png' %}" /></a></div>
             </div>
             
             <div class="header-right">
@@ -14,12 +14,15 @@
                 <nav id="menu">
                     <span class="menu-trigger"><i class="fa fa-bars"></i> MENU</span>
                     <ul>
-                        <li><a href="">Home</a></li>
+                        {% if user.is_authenticated %}
+                        <li><a href="http://127.0.0.1:8000/admin">Admin</a></li>
+                        {% endif %}
+                        <li><a href="/">Home</a></li>
                         <li><a href="blog.html">Blog</a></li>
                         <li class="down home"><a href="#">Tags <i class="fa fa-caret-down"></i></a>
                             <ul class="menus">
                                 {% for tag in tags %}
-                                <li><a href="blog_1.html">{{ tag.name }}</a></li>
+                                <li><a href="{% url 'home:tag_filter' tag.slug %}">{{ tag.name }}</a></li>
                                 {% endfor %}
                             </ul>
                         </li>

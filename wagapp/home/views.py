@@ -50,6 +50,11 @@ def post_filter(request, category=None, tag=None):
         requested_category = get_object_or_404(Categories, slug=category)
         posts = posts.filter(category__in = [requested_category])
 
+    requested_tag = None
+    if tag:
+        requested_tag = get_object_or_404(Tag, slug=tag)
+        posts = posts.filter(tags__in = [requested_tag])
+
     post_per_page = 5
     paginator = Paginator(posts, post_per_page)
     page_number = request.GET.get('page')
