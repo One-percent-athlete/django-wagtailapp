@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from django.core.paginator import Paginator
-from django.contrib.postgres.search import SearchVector
+from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from taggit.models import Tag
 
 from .models import Post, Review,Categories
@@ -73,9 +73,11 @@ def post_search(request,):
         form = SearchForm(request.GET)
         if form.is_valid():
             query = form.cleaned_data['query']
+            search_vector = SearchVector('title', weight='A', config='English') + SearchVector('body', weight='B', config='English')
+            search_query = SearchQuery(query, config='English')
             results = Post.objects.annotate(
-                search = SearchVector('title', 'body')
-            ).filter(search=query)
+                search=search_vector,
+                rank=SearchRank(search_vector,search_query)).filter(rank__gte=0.3).order_by('-rank')
 
     categories = Categories.objects.all()
     tags = Tag.objects.all()
