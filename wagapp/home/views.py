@@ -1,9 +1,10 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from django.core.paginator import Paginator
+from django.contrib.postgres.search import SearchVector
 from taggit.models import Tag
 
 from .models import Post, Review,Categories
-from .forms import ReviewForm
+from .forms import ReviewForm, SearchForm
 
 def post_list(request):
     posts = Post.objects.all()
@@ -62,3 +63,26 @@ def post_filter(request, category=None, tag=None):
 
     context = {'categories': categories, 'tags': tags, 'page_object':page_object}
     return render(request, 'home/filters.html', context)
+
+def post_search(request,):
+    form = SearchForm()
+    query = None
+    results = []
+
+    if 'query' in request.GET:
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            results = Post.objects.annotate(
+                search = SearchVector('title', 'body')
+            ).filter(search=query)
+
+    categories = Categories.objects.all()
+    tags = Tag.objects.all()
+    post_per_page = 5
+    paginator = Paginator(results, post_per_page)
+    page_number = request.GET.get('page')
+    page_object = paginator.get_page(page_number)
+
+    context = {'categories': categories, 'tags': tags, 'page_object':page_object}
+    return render(request, 'home/post_search.html', context)

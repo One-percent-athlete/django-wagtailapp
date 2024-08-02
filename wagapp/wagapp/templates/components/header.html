@@ -130,8 +130,8 @@
                 <!-- SEARCH FORM START -->
                 <div class="search-section clearfix">
                     <div id="search" title="Type and hit enter">
-                        <form id="searchform" method="get">
-                            <input id='s' name='q' onblur='if (this.value == "") {this.value = "Search...";}' onfocus='if (this.value == "Search...") {this.value = "";}' type='text' value='Search...'/>
+                        <form id="searchform" method="get" action="/search/">
+                            <input id='s' name='query' onblur='if (this.value == "") {this.value = "Search...";}' onfocus='if (this.value == "Search...") {this.value = "";}' type='text' value='Search...'/>
                         </form>
                     </div>
                 </div><!-- SEARCH FORM END -->

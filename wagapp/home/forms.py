@@ -19,3 +19,6 @@ class ReviewForm(forms.ModelForm):
                 choices=REVIEW_CHOICES
             )
         }
+
+class SearchForm(forms.Form):
+    query = forms.CharField()
